@@ -1,22 +1,52 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import Home from '.././views/home/HomeItem'
+import Login from '.././views/login/Login'
+import Register from '.././views/register/Register'
+import Shopping from '.././views/shopping/Shopping'
 
+const Details = () => import('.././views/details/Details')
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/home'
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/home', // url路径
+    component: Home, // 需要显示的组件,
+    meta: { // 元数据（描述数据的数据）
+      title: '首页'
+    }
+  },
+  {
+    path: '/login',
+    component: Login,
+    meta: {
+      title: '登录'
+    }
+  },
+  {
+    path: '/register',
+    component: Register,
+    meta: {
+      title: '注册'
+    }
+  },
+  {
+    path: '/shopping',
+    component: Shopping,
+    meta: {
+      title: '购物车'
+    }
+  },
+  {
+    path: '/details/:commodity',
+    component: Details,
+    meta: {
+      title: '详情'
+    }
   }
 ]
 
